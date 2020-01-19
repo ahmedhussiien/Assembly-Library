@@ -8,15 +8,27 @@
 ; Created: 
 ;
 ;
-; This file provide some Procedures that helps in dealing with keyboard events
-; Included also is a Macro wrapper for each procedure
+; This file provide some Macros that helps in dealing with keyboard events
 ; 
-; Procedures included:
-;	* GetRandomNumber
+; Macros:
+;	* WaitForKeyPress
+;   * GetKeyPress
+;   * GetUserInput
 ;
 ;===========================================================================
 
-WaitForKeyPress PROC
+
+
+;-----------------------------------------------------
+; WaitForKeyPress
+;-----------------------------------------------------
+; Wait untill the user press on a key 
+; @return AH = Scan code
+; @return AL = ASCII COde
+
+;-----------------------------------------------------
+WaitForKeyPress MACRO
+LOCAL @@CheckKeyPress
 
 @@CheckKeyPress:
 				MOV AH,1
@@ -26,14 +38,48 @@ WaitForKeyPress PROC
 MOV AH, 0
 INT 16h
 
-RET
-WaitForKeyPress ENDP
+ENDM WaitForKeyPress 
 
 
-GetKeyPress PROC
+
+;-----------------------------------------------------
+; GetKeyPress
+;-----------------------------------------------------
+; Get key press ( Non-blocking )
+;
+; @return ZF = 0 if a key pressed
+; @return AH = Scan code
+; @return AL = ASCII COde
+;
+;-----------------------------------------------------
+GetKeyPress MACRO
 
 MOV AH, 01
 INT 16H
 
-RET
-GetKeyPress ENDP
+MOV AH, 01
+INT 16H
+ENDM GetKeyPress
+
+
+
+;-----------------------------------------------------
+; GetKeyPress
+;-----------------------------------------------------
+; Get user input given a buffer
+; Buffer DB BufferSize, StringLength, ActualString
+;
+; @return AH Fill Buffer data
+;
+;-----------------------------------------------------
+GetUserInput MACRO BufferOffset
+PUSH AX
+PUSH DX
+
+MOV DX, BufferOffset
+MOV AH, 0AH
+INT 21H
+
+POP DX
+POP AX
+ENDM GetUserInput

@@ -8,11 +8,11 @@
 ; Created: 
 ;
 ;
-; This file provide a procedure that facilitate mathematicla operations
+; This file provide procedures that facilitate mathematicla operations
 ; 
 ; Procedures included:
 ;	* GetRandomNumber
-;   * TranslateNumber ( Macro )
+;   * TranslateNumber
 ;
 ;===========================================================================
 

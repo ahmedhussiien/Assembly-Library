@@ -27,11 +27,17 @@ ClearPage PROC
 
 PUSH AX
 PUSH BX
+PUSH CX
+PUSH DX
 
-MOV AX, 03H
-MOV BX, 00H
+MOV AX, 00H
+MOV BH, GX_BACKGROUND_COLOR
+MOV CX, 00H
+MOV DX, 184FH ;End of screen coordinates
 INT 10H
 
+POP DX
+POP CX
 POP BX
 POP AX
 RET
@@ -96,3 +102,24 @@ MOV GX_ScreenHeight, GX_TEXT_MODE_ROW
 POP AX
 RET
 SetTextMode ENDP
+
+
+;-----------------------------------------------------
+; Scroll
+;-----------------------------------------------------
+; Scroll page up or down
+;-----------------------------------------------------
+Scroll MACRO FromX, FromY, ToX, ToY, Color, NumberOfLines
+PUSHA
+
+MOV CL, FromX
+MOV CH, FromY
+MOV DL, ToX
+MOV DH, ToY
+MOV BH, Color
+MOV AL, NumberOfLines
+MOV AH, 06H
+INT 10H
+
+POPA
+ENDM Scroll

@@ -6,6 +6,8 @@
 ;
 ; Author: Ahmed Hussein
 ; Created: 
+;
+; Some ideas where taken from: https://github.com/oded8bit/Assembly-Lib
 ;===========================================================================
 
 
