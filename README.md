@@ -1,6 +1,6 @@
 # Assembly Library
-A graphics and utilities packages for Assembly x86 that facilitates the process of creating GUI programs and games.
-Assembeled using MASM V 5.1
+Graphics and utilities library for Assembly x86 that facilitates the process of creating GUI programs and games.
+Assembled using MASM V 5.1
 
 ## Using the library
 ```assembly
@@ -10,7 +10,7 @@ Assembeled using MASM V 5.1
 .DATA
 INCLUDE AsmLib\Defn.inc
 
-;...Your data members goes here
+;...Your data members go here
 
 .CODE
 INCLUDE AsmLib\Util.inc
@@ -38,7 +38,7 @@ The utilities package abstracts the complexity behind doing frequent operations 
 * Heap management --> to access heap memory and use dynamic allocation.
 * Key management --> To handle user input through the keyboard.
 * Math --> Includes procedures to generate a random number and translating input to another range.
-* Debug --> Create and write bytes, word, and strings to a debug file.
+* Debug --> Create and write bytes, words, and strings to a debug file.
 * Time --> For program delays.
 * Util --> To use PushA and PopA macros. 
 <br> 
@@ -77,4 +77,4 @@ To ease the process of making GUI even more I made some tools -Not part of this 
 1. Open the photo in photoshop.
 2. Choose color mode "indexed" with the "VGA color palette" for the 13h and "Text color palette" for 12h.
 3. Save the image. Preferably as .BMP
-4. Use python script to get photo data.
+4. Use the given python script to get photo data.
