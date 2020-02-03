@@ -40,8 +40,9 @@ The utilities package abstracts the complexity behind doing frequent operations 
 * Math --> Includes procedures to generate a random number and translating input to another range.
 * Debug --> Create and write bytes, word, and strings to a debug file.
 * Time --> For program delays.
-* Util --> To use PushA and PopA macros.
-  
+* Util --> To use PushA and PopA macros. 
+<br> 
+
 ## The graphics package
 the graphics package includes tools to draw and animate objects. To do this generally to any object, objects must have a struct like form. Done that, the package can draw and animate any "Draw-able" object in this format:  
   
@@ -57,12 +58,14 @@ the graphics package includes tools to draw and animate objects. To do this gene
 * Draw --> Includes procedures to draw different shapes on the screen, draw pixel array from memory, erase an object or shape.
 * GFX --> Includes procedures to change the video mode, clear page, and scroll on the current page.
 * Sound --> Includes a procedure for playing the Beep sound.
-* Anim --> Includes procedures that shift objects in any direction
-   
+* Anim --> Includes procedures that shift objects in any direction. 
+<br> 
+
 ## Definitions
 Includes keys scan codes.  
-Includes a VGA color palette.
-   
+Includes a VGA color palette.  
+<br> 
+
 ## GUI designing tools ( Additional tools )
 To ease the process of making GUI even more I made some tools -Not part of this library- that may help you in the process.
 * 16 Bit color palette.
