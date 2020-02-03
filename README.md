@@ -32,9 +32,7 @@ END MAIN
 
 ## The utilities package
 The utilities package abstracts the complexity behind doing frequent operations and facilitate the process of creating programs.
-
- <br>  
-
+<br>
 ### The utilities package includes:
 * File management --> for Opening, Creating, Reading and Writing Files.
 * Serial --> for communicating with other computers through the serial port.
@@ -45,8 +43,7 @@ The utilities package abstracts the complexity behind doing frequent operations 
 * Time --> For program delays.
 * Util --> To use PushA and PopA macros.
  
- <br>
-
+<br>
 ## The graphics package
 the graphics package includes tools to draw and animate objects. To do this generally to any object, objects must have a struct like form. Done that, the package can draw and animate any "Draw-able" object in this format:   
 <br> 
@@ -56,9 +53,7 @@ the graphics package includes tools to draw and animate objects. To do this gene
 4th Byte = Y-coordinate.  
 5th Byte = Neglected. Used by the user and can be different fro mone object to another.  
 6th Byte = Start of the pixel array.  
-
- <br> 
-
+<br>
 ### The graphics package include:
 * Print --> Includes procedures that print a string with custom colors on the screen in any graphics mode.
 * Draw --> Includes procedures to draw different shapes on the screen, draw pixel array from memory, erase an object or shape.
@@ -66,23 +61,19 @@ the graphics package includes tools to draw and animate objects. To do this gene
 * Sound --> Includes a procedure for playing the Beep sound.
 * Anim --> Includes procedures that shift objects in any direction
  
- <br> 
-
+<br>
 ## Definitions
 Includes keys scan codes.  
 Includes a VGA color palette.
  
- <br> 
-
+<br>
 ## GUI designing tools ( Additional tools )
 To ease the process of making GUI even more I made some tools -Not part of this library- that may help you in the process.
 * 16 Bit color palette.
 * VGA256 color palette.
 * Python script to convert image to the pixel array.
 * MCGA 320x200 PSD file.
-
- <br>  
- 
+<br>
 ### Steps for converting the photo to pixel array:
 1. Open the photo in photoshop.
 2. Choose color mode "indexed" with the "VGA color palette" for the 13h and "Text color palette" for 12h.
