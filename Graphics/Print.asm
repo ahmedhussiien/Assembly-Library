@@ -12,7 +12,7 @@
 ; All procedures provided works on top of Interrupt 10H
 ; 
 ; Procedures included:
-;	* PrintString
+;   * PrintString
 ;   * PrintStringVGA
 ;
 ;===========================================================================
@@ -119,7 +119,7 @@ PrintStringVGA ENDP
 
 
 ;===========================================================================
-;								Macro wrappers
+;                               Macro wrappers
 ;===========================================================================
 PrintString_M MACRO DispPage, StringLength, RowPos, ColumnPos, Color, PointerToString
 PUSHA

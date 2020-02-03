@@ -1,5 +1,5 @@
 ;===========================================================================
-; 							  KeyMang.asm
+;                             KeyMang.asm
 ;---------------------------------------------------------------------------
 ; Assembly x86 library
 ;
@@ -11,7 +11,7 @@
 ; This file provide some Macros that helps in dealing with keyboard events
 ; 
 ; Macros:
-;	* WaitForKeyPress
+;   * WaitForKeyPress
 ;   * GetKeyPress
 ;   * GetUserInput
 ;
@@ -31,9 +31,9 @@ WaitForKeyPress MACRO
 LOCAL @@CheckKeyPress
 
 @@CheckKeyPress:
-				MOV AH,1
-				INT 16H
-				JZ @@CheckKeyPress
+                MOV AH,1
+                INT 16H
+                JZ @@CheckKeyPress
 
 MOV AH, 0
 INT 16h

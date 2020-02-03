@@ -12,20 +12,20 @@
 ; through serial port
 ; 
 ; Procedures included:
-;	* ConfigurePort
-;	* SendByte
-;	* CheckForData
-;	* RecieveByte
-;	* WaitForRecievedData
+;   * ConfigurePort
+;   * SendByte
+;   * CheckForData
+;   * RecieveByte
+;   * WaitForRecievedData
 ;===========================================================================
 
 ;-------------------- Definitions --------------------
-DATA_READY				EQU 00
-DATA_NOT_READY			EQU 01
-LINE_STATUES_REGISTER	EQU	03FDH
-LINE_CONTROL_REGISTER	EQU 03FBH
-TRANSMIT_DATA_REGISTER	EQU 03F8H
-DIVISOR_LATCH_REGISTER	EQU 03F9H
+DATA_READY              EQU 00
+DATA_NOT_READY          EQU 01
+LINE_STATUES_REGISTER   EQU 03FDH
+LINE_CONTROL_REGISTER   EQU 03FBH
+TRANSMIT_DATA_REGISTER  EQU 03F8H
+DIVISOR_LATCH_REGISTER  EQU 03F9H
 
 
 
@@ -45,14 +45,14 @@ JZ @@ReturnNotReady
 
 MOV AL, DATA_READY
 JMP @@CheckForDataReturn
-	
+    
 @@ReturnNotReady: 
-	MOV AL, DATA_NOT_READY
-				
-@@CheckForDataReturn:	
-	POP DX	
-	RET
-	
+    MOV AL, DATA_NOT_READY
+                
+@@CheckForDataReturn:   
+    POP DX  
+    RET
+    
 CheckForData endp
 
 
@@ -92,11 +92,11 @@ PUSH DX
 PUSH AX
 
 ;Check that Transimitter Holding Register is empty
-MOV DX ,LINE_STATUES_REGISTER		
-@@CheckTHR:	
-	IN AL,DX 			
-	AND AL, 00100000B
-	JZ @@CheckTHR
+MOV DX ,LINE_STATUES_REGISTER       
+@@CheckTHR: 
+    IN AL,DX            
+    AND AL, 00100000B
+    JZ @@CheckTHR
 
 ;Put the value in Transmit data register
 POP AX
@@ -120,12 +120,12 @@ PUSH DX
 
 ;Set divisor latch access bit
 MOV DX,LINE_CONTROL_REGISTER
-MOV AL,10000000B		
-OUT DX,AL				
+MOV AL,10000000B        
+OUT DX,AL               
  
 ;Set LSB byte of the BaudRate Divisor latch register 
-MOV DX,TRANSMIT_DATA_REGISTER	
-MOV AL,0CH			
+MOV DX,TRANSMIT_DATA_REGISTER   
+MOV AL,0CH          
 OUT DX,AL
 
 ;Set MSB byte of the BaudRate Divisor latch register 
@@ -158,9 +158,9 @@ PUSH AX
 ;Check that Data Ready
 MOV DX, LINE_STATUES_REGISTER
 @@CheckForData: 
-	IN AL,DX
-	AND AL, DATA_NOT_READY
-	JZ @@CheckForData
+    IN AL,DX
+    AND AL, DATA_NOT_READY
+    JZ @@CheckForData
 
 ;Read the value recieved
 POP AX

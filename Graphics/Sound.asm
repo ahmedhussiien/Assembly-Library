@@ -11,7 +11,7 @@
 ; This file provides a macro for Bell sound
 ; 
 ; Macros included:
-;	* Beep
+;   * Beep
 ;
 ;===========================================================================
 

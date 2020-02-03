@@ -12,7 +12,7 @@
 ; on the screen
 ; 
 ; Procedures included:
-;	* ClearPage
+;   * ClearPage
 ;   * SetTextMode
 ;   * SetVideoModeMCGA
 ;   * SetVideoModeVGA

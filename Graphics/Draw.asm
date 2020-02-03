@@ -12,10 +12,10 @@
 ; the file includes also Macro wrapper for some procedures
 ; 
 ; Procedures included:
-;	* DrawData
-;	* DrawObject
-;	* DrawRectangle
-;	* Erase
+;   * DrawData
+;   * DrawObject
+;   * DrawRectangle
+;   * Erase
 ;   * EraseObject
 ;
 ;===========================================================================
@@ -39,8 +39,8 @@ PUSH DI
 @@DrawDataLength:
 @@DrawDataWidth:
                
-MOV AL, [SI] 	;Pixel color
-MOV AH, 0CH 	;Draw Pixel Command
+MOV AL, [SI]    ;Pixel color
+MOV AH, 0CH     ;Draw Pixel Command
 INT 10H
 
 INC SI
@@ -48,9 +48,9 @@ INC CX
 DEC DI
 JNZ @@DrawDataWidth 
 
-POP DI		; Reset Width
+POP DI      ; Reset Width
 PUSH DI
-SUB CX, DI 	; Reset X-coordinate
+SUB CX, DI  ; Reset X-coordinate
 
 INC DX
 DEC BP  
@@ -72,11 +72,11 @@ DrawData ENDP
 ;-----------------------------------------------------
 DrawObject PROC
 PUSHA
-MOV DI, [SI] 		;Width
-MOV BP, [SI + 02H]	;Height
-MOV CX, [SI + 04H]	;X-coordinate
-MOV DX, [SI + 06H]	;Y-coordinate
-ADD SI, 0AH 		;Start of pixels array
+MOV DI, [SI]        ;Width
+MOV BP, [SI + 02H]  ;Height
+MOV CX, [SI + 04H]  ;X-coordinate
+MOV DX, [SI + 06H]  ;Y-coordinate
+ADD SI, 0AH         ;Start of pixels array
 
 CALL DrawData
 
@@ -108,10 +108,10 @@ INC CX
 DEC DI
 JNZ @@DrawWidth 
 
-POP DI			; Reset the width value
+POP DI          ; Reset the width value
 PUSH DI
 
-SUB CX, DI		; Reset X-coordinate
+SUB CX, DI      ; Reset X-coordinate
 INC DX
 DEC BP
 JNZ @@DrawLength
@@ -156,7 +156,7 @@ RET
 EraseObject ENDP
 
 ;===========================================================================
-;								Macro wrappers
+;                               Macro wrappers
 ;===========================================================================
 DrawData_M MACRO Width, Height, Xcoordinate, Ycoordinate, PixelArrayOffset
 

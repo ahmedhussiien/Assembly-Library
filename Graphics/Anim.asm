@@ -11,20 +11,20 @@
 ; This file provide some Procedures for animating objects like shifting
 ; 
 ; Procedures included:
-;	* ShiftUp
-;	* ShiftDown
-;	* ShiftRight
-;	* ShiftLeft
+;   * ShiftUp
+;   * ShiftDown
+;   * ShiftRight
+;   * ShiftLeft
 ;
 ; Note: 
-;	1.	Animation works only on "Draw-able" objects you can see more on how to
-;		construct those in the main document.
+;   1.  Animation works only on "Draw-able" objects you can see more on how to
+;       construct those in the main document.
 ;   2.  Shifting animation will stop whenever it hit screen borders
-;	3.	Shifting procedures are intended for small shifting animations
-;		if a big shift is used it may result in erasing a big portion of the screen
-;		unintentially.
-;		If you want to CHANGE the position of an object you can easily erase it and
-;		draw it again.
+;   3.  Shifting procedures are intended for small shifting animations
+;       if a big shift is used it may result in erasing a big portion of the screen
+;       unintentially.
+;       If you want to CHANGE the position of an object you can easily erase it and
+;       draw it again.
 ;===========================================================================
 
 
@@ -42,8 +42,8 @@ GX_ShiftStep        EQU     05H
 ShiftDown PROC
 PUSHA
 
-MOV BP, [SI + 02H]		;Height
-MOV DX, [SI + 06H]		;Y-coordinate
+MOV BP, [SI + 02H]      ;Height
+MOV DX, [SI + 06H]      ;Y-coordinate
 
 ;Check borders
 ADD DX, GX_ShiftStep
@@ -57,16 +57,16 @@ MOV [SI + 06H], DX
 CALL DrawObject
 
 ;Erasing
-MOV BP, [SI + 02H] 	
+MOV BP, [SI + 02H]  
 MOV CX, [SI + 04H]
-MOV DX, [SI + 06H]	
+MOV DX, [SI + 06H]  
 SUB DX, GX_ShiftStep
 MOV BP, GX_ShiftStep
-CALL Erase	
+CALL Erase  
 
-@@NoShiftDown:	
-			POPA
-			RET
+@@NoShiftDown:  
+            POPA
+            RET
 ShiftDown ENDP
 
 
@@ -91,16 +91,16 @@ MOV [SI + 06H], DX
 CALL DrawObject
 
 ;Erasing
-MOV DI, [SI]		;Width
-MOV BP, [SI + 02H]	;Height
-MOV CX, [SI + 04H]	;X-coordinate
-MOV DX, [SI + 06H]	;Y-coordinate
-ADD DX, BP			
+MOV DI, [SI]        ;Width
+MOV BP, [SI + 02H]  ;Height
+MOV CX, [SI + 04H]  ;X-coordinate
+MOV DX, [SI + 06H]  ;Y-coordinate
+ADD DX, BP          
 MOV BP, GX_ShiftStep
-CALL Erase	
+CALL Erase  
 
 @@NoShiftUp:POPA
-			RET
+            RET
 ShiftUp ENDP
 
 
@@ -125,12 +125,12 @@ CALL DrawObject
 
 ;Erasing
 MOV DI, [SI]
-MOV BP, [SI + 02H] 	
+MOV BP, [SI + 02H]  
 MOV CX, [SI + 04H]
-MOV DX, [SI + 06H]	
+MOV DX, [SI + 06H]  
 ADD CX, DI
 MOV DI, GX_ShiftStep
-CALL Erase	
+CALL Erase  
 
 @@NoShiftLeft:  POPA
                 RET
@@ -161,12 +161,12 @@ MOV [SI + 04H], CX
 CALL DrawObject
 
 ;Erasing
-MOV BP, [SI + 02H] 	
+MOV BP, [SI + 02H]  
 MOV CX, [SI + 04H]
-MOV DX, [SI + 06H]	
+MOV DX, [SI + 06H]  
 SUB CX, GX_ShiftStep
 MOV DI, GX_ShiftStep
-CALL Erase	
+CALL Erase  
 
 @@NoShiftRight: POPA
                 RET

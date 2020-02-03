@@ -11,7 +11,7 @@
 ; This file provide some Procedures that are used for time operations and delays
 ; 
 ; Procedures included:
-;	* Delay
+;   * Delay
 ;
 ;===========================================================================
 
@@ -26,11 +26,11 @@
 Delay   PROC
         PushA
 
-		MOV     AH, 86H
-		INT     15H 
-		
-		PopA
-		ret  
+        MOV     AH, 86H
+        INT     15H 
+        
+        PopA
+        ret  
 Delay   ENDP
 
 

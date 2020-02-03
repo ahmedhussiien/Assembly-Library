@@ -1,5 +1,5 @@
 ;===========================================================================
-; 							    FileMang.asm
+;                               FileMang.asm
 ;---------------------------------------------------------------------------
 ; Assembly x86 library
 ;
@@ -8,89 +8,130 @@
 ; Created: 
 ;
 ;
-; This file provide some Procedures that helps in dealing with files 
+; This file provide some Macros that ease the process of dealing with files 
 ; 
-; Procedures included:
-;	* OpenFile
+; Macros included:
+;   * OpenFile
 ;   * ReadFile
 ;   * CloseFile
+;   * CreateFile
+;   * WriteToFile
 ;
 ;===========================================================================
 
-
-;-------------------- Definitions --------------------
-FileHandle  DW ?
-FileName    DB ?
 
 
 ;-----------------------------------------------------
 ; OpenFile
 ;-----------------------------------------------------
-; Opens a file in Read-Only mode
-; @param DX = Offset of the File Name in memory
-; @return FileHandle
-; @exception if it fails to open the file the program will exit with code 1
+; Opens a file 
+;
+; @param FileNamePtr = Pointer to ASCII File name in memory. For example: 'test.txt', 0
+; @param OpenAccessMode = 00  read only
+;                         01  write only
+;                         02  read/write
+;
+; @return AX = File handle
+; @exception CF = 1, AX = Error code
 ;-----------------------------------------------------
-OpenFile PROC
-PUSH AX
+OpenFile MACRO FileNamePtr, OpenAccessMode
 PUSH DX
 
+MOV DX, FileNamePtr
+MOV AL, OpenAccessMode
 MOV AH, 3DH  ;Open the file
-MOV AL, 0    ;Read-Only
-LEA DX, FileName 
 INT 21H 
-JC @@FileError
-MOV [FileHandle], AX
-   
+
 POP DX
-POP AX
-RET
-
-@@FileError: MOV AX, 4C01H ;Exit with code 1 ( Error happened )
-             INT 21H
-
-OpenFile ENDP
+ENDM OpenFile
 
 
 
 ;-----------------------------------------------------
 ; ReadFile
 ;-----------------------------------------------------
-; Opens a file in Read-Only mode
-; @param FileHandle = file handle of the currently opened file
-; @param DX = offset to save data into.
-; @param CX = number of bytes to read. For example for an image you read Width*Height bytes
-; @return [DX] = data read from the file
+; Reads file binary data and save it to memory
+;
+; @param DataPtr = Offset to save data into.
+; @param NumOfBytes = Number of bytes to read. For example for an image you read Width*Height bytes
+; @return DataPtr = data read from the file
 ;-----------------------------------------------------
-ReadFile PROC
-PUSH AX
-PUSH BX
+ReadFile MACRO FileHandle, DataPtr, NumOfBytes
+PUSHA
 
+MOV BX, FileHandle
+MOV DX, DataPtr
+MOV CX, NumOfBytes
 MOV AH, 3Fh
-MOV BX, [FileHandle]
 INT 21h
 
-POP BX
-POP AX
-RET
-ReadFile ENDP
+POPA
+ENDM ReadFile
 
 
 
 ;-----------------------------------------------------
 ; CloseFile
 ;-----------------------------------------------------
-; Close the currently opened file handle
+; Closes the passed file handle
 ;-----------------------------------------------------
-CloseFile PROC
+CloseFile MACRO FileHandle
 PUSH AX
 PUSH BX
 
+MOV BX, FileHandle
 MOV AH, 3Eh
-MOV BX, [FileHandle]
 INT 21h
 
 POP BX
 POP AX
-RET
-CloseFile ENDP
+ENDM CloseFile
+
+
+
+;-----------------------------------------------------
+; CreateFile
+;-----------------------------------------------------
+; Creates a new file
+; 
+; @param FileNamePtr = Pointer to ASCII File name in memory
+; @return AX = File handle
+; @exception CF = 1, AX = Error code
+;-----------------------------------------------------
+CreateFile MACRO FileNamePtr
+PUSH CX
+PUSH DX
+
+MOV DX, FileNamePtr
+MOV CX, 00
+MOV AH, 3CH
+INT 21H
+
+POP DX
+POP CX
+ENDM CreateFile
+
+
+
+;-----------------------------------------------------
+; WriteToFile
+;-----------------------------------------------------
+; Write data to the passed file handle
+; 
+; @param DataPtr = Pointer to data buffer
+; @param NumOfBytes = Number of bytes to write. Maximum = 2^16
+;-----------------------------------------------------
+WriteToFile MACRO FileHandle, NumOfBytes, DataPtr
+PUSH AX
+PUSH BX
+PUSH CX
+
+MOV BX, FileHandle
+MOV CX, NumOfBytes
+MOV AH, 40H
+INT 21H
+
+POP CX
+POP BX
+POP AX
+ENDM WriteToFile

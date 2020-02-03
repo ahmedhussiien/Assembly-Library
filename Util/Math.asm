@@ -11,7 +11,7 @@
 ; This file provide procedures that facilitate mathematicla operations
 ; 
 ; Procedures included:
-;	* GetRandomNumber
+;   * GetRandomNumber
 ;   * TranslateNumber
 ;
 ;===========================================================================
@@ -26,13 +26,13 @@
 GetRandomNumber PROC
 PushA
 
-MOV AH, 00h   	; Interrupt to get system timer in CX:DX 
+MOV AH, 00h     ; Interrupt to get system timer in CX:DX 
 INT 1AH
 
 MOV CX , BX
 mov AX, DX
 XOR DX, DX
-DIV CX			; Here DX contains the remainder - from 0 to the upper limit
+DIV CX          ; Here DX contains the remainder - from 0 to the upper limit
 
 PopA
 RET
@@ -64,11 +64,11 @@ RET
 TranslateNumber ENDP
 
 ;===========================================================================
-;								Macro wrappers
+;                               Macro wrappers
 ;===========================================================================
 GetRandomNumber_M MACRO UpperLimit
-	MOV BX UpperLimit
-	CALL GetRandomNumber
+    MOV BX UpperLimit
+    CALL GetRandomNumber
 ENDM GetRandomNumber_M 
 
 

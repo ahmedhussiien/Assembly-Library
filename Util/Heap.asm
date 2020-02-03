@@ -12,7 +12,7 @@
 ; 
 ; Proceduress included:
 ;   * InitializeHeap
-;	* AllocateMemory
+;   * AllocateMemory
 ;   * FreeMemory
 ;   * FreeAll
 ;
@@ -39,11 +39,11 @@ PUSH DX
 PUSH BX
 PUSH AX
 
-MOV DX, SS		            ; Stack segment
+MOV DX, SS                  ; Stack segment
 MOV BX, _STACK_SIZE/16 +1   ; Stack size in paragraphs
-ADD BX, DX		            ; BX = end
-MOV AX, ES		    
-SUB BX, AX		            ; BX = new size in paragraphs
+ADD BX, DX                  ; BX = end
+MOV AX, ES          
+SUB BX, AX                  ; BX = new size in paragraphs
 MOV AH, 4AH
 INT 21H
 
@@ -78,7 +78,8 @@ MOV CH, _NumOfSegments
 MOV CL, 02
 SHL CH, CL
 MOV SI, OFFSET _SegmentsOffsetArr
-MOV CL, 00
+XCHG CH, CL
+MOV CH, 00
 ADD SI, CX
 
 MOV [SI], AX 
@@ -127,8 +128,8 @@ MOV SI, OFFSET _SegmentsOffsetArr
 ;Loop to the last segment offset
 @@LastSegOffset:    INC DI
                     INC DI
-					DEC CL
-					JNZ @@LastSegOffset
+                    DEC CL
+                    JNZ @@LastSegOffset
 
 DEC DI
 DEC DI

@@ -11,8 +11,8 @@
 ; This file provide some Macros that help in decreasing code size
 ; 
 ; Procedures included:
-;	* PushA
-;	* PopA
+;   * PushA
+;   * PopA
 ;===========================================================================
 
 ;-----------------------------------------------------
@@ -47,5 +47,4 @@ POP DX
 POP BX
 POP AX
 ENDM PopA 
-
 
