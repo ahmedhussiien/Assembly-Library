@@ -8,10 +8,17 @@
 ; Created: 
 ;
 ;
-; This file provide some Procedures that helps in the debugging process
+; This file provide some Procedures & Macros that helps in the debugging process
 ; 
 ; Procedures included:
-;   * 
+;   * CreateDebugFile
+;   * CloseDebugFile
+;
+; Macros includes:
+;   * PrintDebugByte
+;   * PrintDebugWord
+;   * PrintDebugString
+;   * PrintDebugNEWL
 ;
 ;===========================================================================
 
@@ -119,7 +126,7 @@ ENDM PrintDebugByte
 ;-----------------------------------------------------
 ; Writes a word to the debugging file
 ;-----------------------------------------------------
-PrintDebubNEWL MACRO 
+PrintDebugNEWL MACRO 
 PUSH DX
 MOV _DebugString, NewLineASCII
 LEA DX, _DebugString
