@@ -16,6 +16,8 @@
 ;   * SetTextMode
 ;   * SetVideoModeMCGA
 ;   * SetVideoModeVGA
+;   * Scroll
+;
 ;===========================================================================
 
 
