@@ -1,0 +1,4 @@
+1. Open the photo in photoshop.
+2. Choose color mode "indexed" with the "VGA color palette" for the 13h and "Text color palette" for 12h.
+3. Save the image. Preferably as .BMP
+4. Use python script to get photo data.
