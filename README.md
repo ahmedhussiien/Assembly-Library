@@ -1,7 +1,8 @@
-# AssemblyLibrary
-A graphics and utilities library for Assembly x86 that ease the process of creating GUI programs and games
+# Assembly Library
+A graphics and utilities packages for Assembly x86 that facilitates the process of creating GUI programs and games.
+Assembeled using MASM V 5.1
 
-## Includeing the library
+## Using the library
 ```assembly
 .MODEL SMALL
 .STACK 64
@@ -42,13 +43,13 @@ The utilities package abstracts the complexity behind doing frequent operations 
 * Util --> To use PushA and PopA macros.
 
 ## The graphics package
-the graphics package includes tools to draw and animate objects. To do this generally to any object, objects must have a struct like form. Done that, the package can draw and animate any "Draw-able" object in this format:
-1st Byte = Width
-2nd Byte = Height
-3rd Byte = X-coordinate
-4th Byte = Y-coordinate
-5th Byte = Neglected. Used by the user and can be different fro mone object to another.
-6th Byte = Start of the pixel array.
+the graphics package includes tools to draw and animate objects. To do this generally to any object, objects must have a struct like form. Done that, the package can draw and animate any "Draw-able" object in this format:  
+1st Byte = Width.  
+2nd Byte = Height.  
+3rd Byte = X-coordinate.  
+4th Byte = Y-coordinate.  
+5th Byte = Neglected. Used by the user and can be different fro mone object to another.  
+6th Byte = Start of the pixel array.  
 
 ### The graphics package include:
 * Print --> Includes procedures that print a string with custom colors on the screen in any graphics mode.
@@ -56,3 +57,22 @@ the graphics package includes tools to draw and animate objects. To do this gene
 * GFX --> Includes procedures to change the video mode, clear page, and scroll on the current page.
 * Sound --> Includes a procedure for playing the Beep sound.
 * Anim --> Includes procedures that shift objects in any direction
+
+## Definitions
+Includes keys scan codes.  
+Includes a VGA color palette.
+
+## GUI designing tools ( Additional tools )
+To ease the process of making GUI even more I made some tools -Not part of this library- that may help you in the process.
+* 16 Bit color palette.
+* VGA256 color palette.
+* Python script to convert image to the pixel array.
+* MCGA 320x200 PSD file.
+
+### Steps for converting the photo to pixel array:
+1. Open the photo in photoshop.
+2. Choose color mode "indexed" with the "VGA color palette" for the 13h and "Text color palette" for 12h.
+3. Save the image. Preferably as .BMP
+4. Use python script to get photo data.
+
+
