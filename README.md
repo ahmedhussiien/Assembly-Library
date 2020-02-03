@@ -28,7 +28,8 @@ INT 21H
 MAIN ENDP
 END MAIN
 ```
-
+ 
+  
 ## The utilities package
 The utilities package abstracts the complexity behind doing frequent operations and facilitate the process of creating programs.
 
@@ -41,7 +42,8 @@ The utilities package abstracts the complexity behind doing frequent operations 
 * Debug --> Create and write bytes, word, and strings to a debug file.
 * Time --> For program delays.
 * Util --> To use PushA and PopA macros.
-
+ 
+  
 ## The graphics package
 the graphics package includes tools to draw and animate objects. To do this generally to any object, objects must have a struct like form. Done that, the package can draw and animate any "Draw-able" object in this format:  
 1st Byte = Width.  
@@ -57,11 +59,13 @@ the graphics package includes tools to draw and animate objects. To do this gene
 * GFX --> Includes procedures to change the video mode, clear page, and scroll on the current page.
 * Sound --> Includes a procedure for playing the Beep sound.
 * Anim --> Includes procedures that shift objects in any direction
-
+ 
+  
 ## Definitions
 Includes keys scan codes.  
 Includes a VGA color palette.
-
+ 
+  
 ## GUI designing tools ( Additional tools )
 To ease the process of making GUI even more I made some tools -Not part of this library- that may help you in the process.
 * 16 Bit color palette.
