@@ -50,7 +50,7 @@ the graphics package includes tools to draw and animate objects. To do this gene
 2nd Byte = Height.  
 3rd Byte = X-coordinate.  
 4th Byte = Y-coordinate.  
-5th Byte = Neglected. Used by the user and can be different fro mone object to another.  
+5th Byte = Unused. Can be used for different purposes by the user.
 6th Byte = Start of the pixel array.  
 
 ### The graphics package include:
